@@ -1,5 +1,4 @@
 # ansible-tomcat-8
-=================
 
 Description
 -----------
