@@ -1,0 +1,19 @@
+---
+- name: Update apt cache
+  apt: update_cache=yes
+
+- name: Install Java 1.7
+  apt: pkg=openjdk-7-jdk state=present
+
+- name: Install Tomcat 8
+  apt: pkg=tomcat8 state=present
+
+- name: Install Tomcat 8 Admin Interface
+  apt: pkg=tomcat8-admin state=present
+
+- name: Enable Tomcat 8 remote debugging
+  template: src=tomcat8 dest=/etc/default/tomcat8
+
+- name: Configure Tomcat 8 Users
+  template: src=tomcat-users.xml dest=/etc/tomcat8
+  notify: tomcat-8-restart
