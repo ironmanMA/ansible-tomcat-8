@@ -37,3 +37,12 @@ Author Information
 ------------------
 
 Code Template (@ironmanma), Structure (@lino) 
+
+Inspiration: 
+------------
+
+All System Canvas port to Tomcat8 Exercise  @ BoomerangCommerce
+
+Contact:
+--------
+Mohammad (mohammad@boomerangcommerce.com)
