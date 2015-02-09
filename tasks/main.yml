@@ -20,9 +20,9 @@
   notify: tomcat-8-restart
 
 - name: Configure for Tomcat 8 logs
-  template: src="logging.properties.j2" dest="/var/lib/tomcat8/conf/logging.properties" owner=root group=tomcat8
+  template: src=logging.properties.j2 dest=/var/lib/tomcat8/conf/logging.properties owner=root group=tomcat8
   notify: tomcat8-restart
 
 - name: Configure server for caching
-  template: src={{ new_server_xml | default('server.xml.j2') }} dest=/etc/tomcat8/server.xml
+  template: src=server.xml.j2 dest=/etc/tomcat8/server.xml
   notify: tomcat8-restart
