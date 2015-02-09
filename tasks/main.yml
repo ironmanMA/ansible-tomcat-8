@@ -1,4 +1,10 @@
 ---
+- name: add new apt repo
+  apt_repository: repo='ppa:dirk-computer42/c42-edge-server'
+  when: ansible_distribution == 'Ubuntu' and {{ ansible_distribution_version | version_compare('14.04', '>=') }}
+  environment:
+    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/lib/jvm/java-7-oracle/bin:/usr/lib/jvm/java-7-oracle/db/bin:/usr/lib/jvm/java-7-oracle/jre/bin
+
 - name: Update apt cache
   apt: update_cache=yes
 
