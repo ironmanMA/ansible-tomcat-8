@@ -4,25 +4,31 @@
 
 - name: Install Java 1.7
   apt: pkg=openjdk-7-jdk state=present
+  when: ansible_distribution == 'Ubuntu' and {{ ansible_distribution_version | version_compare('14.04', '>=') }}
   environment:
     PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/lib/jvm/java-7-oracle/bin:/usr/lib/jvm/java-7-oracle/db/bin:/usr/lib/jvm/java-7-oracle/jre/bin
 
 - name: Install Tomcat 8
   apt: pkg=tomcat8 state=present
+  when: ansible_distribution == 'Ubuntu' and {{ ansible_distribution_version | version_compare('14.04', '>=') }}
   environment:
     PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/lib/jvm/java-7-oracle/bin:/usr/lib/jvm/java-7-oracle/db/bin:/usr/lib/jvm/java-7-oracle/jre/bin
 
 - name: Enable Tomcat 8 remote debugging
   template: src=tomcat8.j2 dest=/etc/default/tomcat8
+  when: ansible_distribution == 'Ubuntu' and {{ ansible_distribution_version | version_compare('14.04', '>=') }}
 
 - name: Configure Tomcat 8 Users
   template: src=tomcat-users.xml.j2 dest=/etc/tomcat8
+  when: ansible_distribution == 'Ubuntu' and {{ ansible_distribution_version | version_compare('14.04', '>=') }}
   notify: tomcat-8-restart
 
 - name: Configure for Tomcat 8 logs
   template: src=logging.properties.j2 dest=/var/lib/tomcat8/conf/logging.properties owner=root group=tomcat8
+  when: ansible_distribution == 'Ubuntu' and {{ ansible_distribution_version | version_compare('14.04', '>=') }}
   notify: tomcat8-restart
 
 - name: Configure server for caching
   template: src=server.xml.j2 dest=/etc/tomcat8/server.xml
+  when: ansible_distribution == 'Ubuntu' and {{ ansible_distribution_version | version_compare('14.04', '>=') }}
   notify: tomcat8-restart
