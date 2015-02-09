@@ -2,7 +2,7 @@
 galaxy_info:
   author: IronmanMA
   description: Tomcat 8 Container
-  company: lino.io
+  company: ironmanma.io
   license: MIT
   min_ansible_version: 1.2
   platforms:
